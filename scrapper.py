@@ -43,8 +43,6 @@ def main():
             book_url = book_li.find('a')['href']
             books_url_list.append(book_url)
 
-    print(len(books_url_list))
-
     fixed_url_list = []
     for book_url in books_url_list:
         fixed_url_list.append(BASE_URL + book_url)
@@ -67,7 +65,7 @@ def main():
     with open(CSV_FILE, mode='w', newline='', encoding='utf-8') as csv_file:
         csv_writer = csv.writer(csv_file)
         # Write CSV header
-        csv_writer.writerow(['Title', 'Content', 'Rating'])
+        csv_writer.writerow(['URL', 'Title', 'Content', 'Rating', 'Additional Tags'])
         
         # Iterate through each product and extract information
         for index, url in enumerate(fixed_all_books_url, start=1):
@@ -75,18 +73,32 @@ def main():
                 driver.get(url)
                 random_sleep()
                 soup = get_soup(driver)
-                title = soup.find('h2', class_='title heading').text.strip()
 
-                content_element = soup.find('div', class_='userstuff module')
-                content = content_element.text.strip()
+                try:
+                    title = soup.find('h2', class_='title heading').text.strip()
+                except:
+                    title = 'Not Found'
 
-                rating_element = soup.find('dd', class_='rating tags')
-                rating = rating_element.text.strip()
+                try:
+                    content_element = soup.find('div', class_='userstuff module')
+                    content = content_element.text.strip()
+                except:
+                    content = 'Not Found'
 
-                additional_tags_element = soup.find('dd', class_='freeform tags')
-                additional_tags = additional_tags_element.text.strip()
+                try:
+                    rating_element = soup.find('dd', class_='rating tags')
+                    rating = rating_element.text.strip()
+                except:
+                    rating = 'Not Found'
+
+                try:
+                    additional_tags_element = soup.find('dd', class_='freeform tags')
+                    additional_tags = additional_tags_element.text.strip()
+                except:
+                    additional_tags = 'Not Found'
+
                 # Write product information to the CSV file
-                csv_writer.writerow([title, content, ''])
+                csv_writer.writerow([url, title, content, rating, additional_tags])
                 print(index)
 
     print(f"Data written to {CSV_FILE}")
