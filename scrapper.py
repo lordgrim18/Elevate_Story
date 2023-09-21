@@ -14,7 +14,7 @@ BASE_URL = 'https://archiveofourown.org'
 
 # Initialize the WebDriver
 def initialize_driver():
-    driver = webdriver.Chrome()
+    driver = webdriver.Firefox()
     return driver
 
 # Random sleep to mimic human behavior
