@@ -79,7 +79,12 @@ def main():
 
                 content_element = soup.find('div', class_='userstuff module')
                 content = content_element.text.strip()
-                print(content)
+
+                rating_element = soup.find('dd', class_='rating tags')
+                rating = rating_element.text.strip()
+
+                additional_tags_element = soup.find('dd', class_='freeform tags')
+                additional_tags = additional_tags_element.text.strip()
                 # Write product information to the CSV file
                 csv_writer.writerow([title, content, ''])
                 print(index)
