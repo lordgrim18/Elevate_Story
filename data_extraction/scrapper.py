@@ -2,9 +2,7 @@ import csv
 from selenium import webdriver
 from time import sleep
 from bs4 import BeautifulSoup
-import re
 import random
-import unicodedata
 import pandas as pd
 
 CSV_FILE = 'data.csv'
