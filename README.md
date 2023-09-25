@@ -1,6 +1,9 @@
 # Elevate Story
 
-This repository contains the Gen-AI model developed for the Elevate app. The model is hosted on the Hugging Face model hub: [lordgrim18/llama2-elevate-story-3](https://huggingface.co/lordgrim18/llama2-elevate-story-3/tree/main)
+This repository contains the Gen-AI model developed for the Elevate app. 
+
+The model is hosted on the Hugging Face model hub: [lordgrim18/llama2-elevate-story-3](https://huggingface.co/lordgrim18/llama2-elevate-story-3/tree/main)
+
 The Gen-AI produces a short story based on the genre given. You can also add a context if needed.
 
 ## Repository Contents
